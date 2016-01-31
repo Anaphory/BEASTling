@@ -200,11 +200,10 @@ class BeastXml:
 
         # Up/down
         updown = ET.SubElement(self.run, "operator", {"id":"UpDown","spec":"UpDownOperator","scaleFactor":"1.0", "weight":"30.0"})
-        ET.SubElement(updown, "tree", {"idref":"Tree.t:beastlingTree", "name":"up"})
-        ET.SubElement(updown, "parameter", {"idref":"birthRate.t:beastlingTree", "name":"down"})
+        ET.SubElement(updown, "up", {"idref":"birthRate.t:beastlingTree"})
         if self.config.calibrations:
             for model in self.config.models:
-                ET.SubElement(updown, "parameter", {"idref":"clockRate.c:%s" % model.name, "name":"down"})
+                ET.SubElement(updown, "down", {"idref":"clockRate.c:%s" % model.name})
 
         # Model specific operators
         for model in self.config.models:
